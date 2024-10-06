@@ -21,10 +21,11 @@ jobs:
           go-version: ${{matrix.go-version}}
       # You can test your matrix by printing the current Go version
       - name: Display Go version
-        run
-      - id: Build-Vue
-        uses: xRealNeon/VuePagesAction@1.0.1
-        with:
-          username: 'YourGithubName'
-          reponame: 'YourRepoName'
-          token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
+        run: go version
+
+      - name: Install dependencies
+        run: go get .
+      - name: Build project
+        run: go build -v ./...
+      - name: Test with the Go CLI
+        run: go test
