@@ -2,9 +2,9 @@ name: Build golang
 on:
   workflow_dispatch:
     push:
-      branches: [develop, master, release*]
+      branches: [develop, master]
     pull_request:
-      branches: [develop, master, release*]
+      branches: [develop, master]
 jobs:
   build_golang:
     runs-on: ubuntu-latest
