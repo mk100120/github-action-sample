@@ -1,0 +1,30 @@
+name: Build golang
+on:
+  workflow_dispatch:
+    push:
+      branches: [develop, release*]
+    pull_request:
+      branches: [develop], release*]
+jobs:
+  build_golang:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: ['1.19', '1.20', '1.21.x','1.22.x', '1.23.x']
+    name: Build Golang
+    steps:
+      - name: Checkout code from github
+        uses: actions/checkout@v4
+      - name: Setup Go ${{matrix.go-version}}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{matrix.go-version}}
+      # You can test your matrix by printing the current Go version
+      - name: Display Go version
+        run
+      - id: Build-Vue
+        uses: xRealNeon/VuePagesAction@1.0.1
+        with:
+          username: 'YourGithubName'
+          reponame: 'YourRepoName'
+          token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
